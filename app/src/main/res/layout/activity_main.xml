@@ -5,8 +5,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
     tools:context="es.devjacl.transportcard.MainActivity">
 
-
+    <TextView
+        android:id="@+id/saldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:longClickable="true"
+        android:textSize="72dp"
+        android:text="5,2 €" />
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_gravity="center">
+        <TableRow>
+            <Button
+                android:id="@+id/botonBus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:text="Bus" />
+            <Button
+                android:id="@+id/botonMetro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:text="Metro" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textoBus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:text="4 viajes" />
+            <TextView
+                android:id="@+id/textoMetro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="5 viajes" />
+        </TableRow>
+    </TableLayout>
 </LinearLayout>
