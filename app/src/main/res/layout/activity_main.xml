@@ -24,23 +24,18 @@
         android:layout_margin="20dp"
         android:layout_gravity="center">
         <TableRow>
-            <Button
-                android:id="@+id/botonBus"
+            <ImageButton
+                android:id="@+id/bus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
                 android:layout_marginRight="10dp"
-                android:text="Bus" />
-            <Button
-                android:id="@+id/botonMetro"
+                app:srcCompat="@drawable/bus_icon" />
+            <ImageButton
+                android:id="@+id/metro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_weight="1"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
-                android:text="Metro" />
+                app:srcCompat="@drawable/metro_icon" />
         </TableRow>
         <TableRow>
             <TextView
@@ -48,14 +43,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
                 android:text="4 viajes" />
             <TextView
                 android:id="@+id/textoMetro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:text="5 viajes" />
         </TableRow>
     </TableLayout>
