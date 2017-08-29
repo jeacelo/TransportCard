@@ -65,10 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateSaldo(double saldo)
     {
-        saldoDouble += saldo;
-        saldoDouble = Math.round(saldoDouble*Math.pow(10,2))/Math.pow(10,2);
-        saldoTxt.setText(String.valueOf(saldoDouble) + " €");
-        updateViajes();
+        if (saldo > 0 || saldoDouble >= -saldo) {
+            saldoDouble += saldo;
+            saldoDouble = Math.round(saldoDouble * Math.pow(10, 2)) / Math.pow(10, 2);
+            saldoTxt.setText(String.valueOf(saldoDouble) + " €");
+
+            updateViajes();
+        }
     }
 
     private void updateViajes()
