@@ -24,39 +24,44 @@
         android:layout_margin="20dp"
         android:layout_gravity="center">
         <TableRow>
-            <Button
-                android:id="@+id/botonBus"
+            <ImageButton
+                android:id="@+id/bus"
+                android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
                 android:layout_marginRight="10dp"
-                android:text="Bus" />
+                app:srcCompat="@drawable/bus_icon" />
             <Button
-                android:id="@+id/botonMetro"
+                android:id="@+id/recargar"
+                android:layout_column="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
-                android:text="Metro" />
+                android:text="@string/recargar" />
+            <ImageButton
+                android:id="@+id/metro"
+                android:layout_column="3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                app:srcCompat="@drawable/metro_icon" />
         </TableRow>
         <TableRow>
             <TextView
                 android:id="@+id/textoBus"
+                android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:text="4 viajes" />
+                android:text="viajes" />
             <TextView
                 android:id="@+id/textoMetro"
+                android:layout_column="3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:text="5 viajes" />
+                android:layout_marginLeft="5dp"
+                android:text="viajes" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

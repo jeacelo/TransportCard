@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TransportCard</string>
+    <string name="recargar">RECARGAR</string>
 </resources>
