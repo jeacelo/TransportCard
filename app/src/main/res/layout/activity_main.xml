@@ -26,12 +26,21 @@
         <TableRow>
             <ImageButton
                 android:id="@+id/bus"
+                android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 app:srcCompat="@drawable/bus_icon" />
+            <Button
+                android:id="@+id/recargar"
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/recargar" />
             <ImageButton
                 android:id="@+id/metro"
+                android:layout_column="3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -40,17 +49,19 @@
         <TableRow>
             <TextView
                 android:id="@+id/textoBus"
+                android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="4 viajes" />
+                android:text="viajes" />
             <TextView
                 android:id="@+id/textoMetro"
+                android:layout_column="3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:text="5 viajes" />
+                android:text="viajes" />
         </TableRow>
     </TableLayout>
 </LinearLayout>
