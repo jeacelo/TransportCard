@@ -2,6 +2,7 @@ package es.devjacl.transportcard;
 
 import android.content.Intent;
 import android.media.Image;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Dialogo.ItemListener {
 
     private TextView saldoTxt, viajesBusTxt, viajesMetroTxt;
     private Button recargarBtn;
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         recargarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Dialogo dialogo = new Dialogo();
+                dialogo.show(fragmentManager, "tagAlerta");
             }
         });
 
@@ -115,5 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 PRECIO_METRO = Double.parseDouble(data.getExtras().getString("PRECIO METRO"));
             updateSaldo(saldoDouble);
         }
+    }
+
+    public void onItemSelect(String item){
+        saldoDouble += Double.parseDouble(item);
+        updateSaldo(saldoDouble);
     }
 }
