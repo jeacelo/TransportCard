@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton BusBtn, MetroBtn;
     public double PRECIO_BUS = 0.93;
     public double PRECIO_METRO = 0.82;
-    private double saldoDouble;
+    private double saldoDouble = 5.2;
     private int viajesBus, viajesMetro;
     private String saldo;
 
@@ -35,10 +35,7 @@ public class MainActivity extends AppCompatActivity {
         BusBtn = (ImageButton) findViewById(R.id.bus);
         MetroBtn = (ImageButton) findViewById(R.id.metro);
 
-        saldo = saldoTxt.getText().toString();
-        saldoDouble = (Double.parseDouble(saldo.substring(0, saldo.length() - 2)));
-        saldoDouble = Math.round(saldoDouble * Math.pow(10, 2)) / Math.pow(10, 2);
-
+        saldoTxt.setText(String.valueOf(saldoDouble));
         viajesBus = (int) (saldoDouble / PRECIO_BUS);
         viajesMetro = (int) (saldoDouble / PRECIO_METRO);
 
@@ -47,43 +44,74 @@ public class MainActivity extends AppCompatActivity {
 
         recargarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                updateSaldo(5);
+                updateSaldo(saldoDouble+5);
             }
         });
 
         BusBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                updateSaldo(-PRECIO_BUS);
+                updateSaldo(saldoDouble-PRECIO_BUS);
             }
         });
 
         MetroBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                updateSaldo(-PRECIO_METRO);
+                updateSaldo(saldoDouble-PRECIO_METRO);
             }
         });
     }
 
     private void updateSaldo(double saldo) {
-        if (saldo > 0 || saldoDouble >= -saldo) {
-            saldoDouble += saldo;
+        if (saldo > 0) {
+            saldoDouble = saldo;
             saldoDouble = Math.round(saldoDouble * Math.pow(10, 2)) / Math.pow(10, 2);
-            saldoTxt.setText(String.valueOf(saldoDouble) + " €");
 
-            updateViajes();
+            viajesBus = (int) (saldoDouble / PRECIO_BUS);
+            viajesMetro = (int) (saldoDouble / PRECIO_METRO);
+
+            updateTexts();
         }
     }
 
-    private void updateViajes() {
-        viajesBus = (int) (saldoDouble / PRECIO_BUS);
-        viajesMetro = (int) (saldoDouble / PRECIO_METRO);
-
+    private void updateTexts(){
+        saldoTxt.setText(String.valueOf(saldoDouble) + " €");
         viajesBusTxt.setText((String.valueOf(viajesBus)) + " viajes");
         viajesMetroTxt.setText((String.valueOf(viajesMetro)) + " viajes");
     }
 
-    /*public void lanzarPreferencias(View view){
+    public void lanzarPreferencias(View view){
         Intent i = new Intent(this, Preferencias.class);
-        startActivity(i);
-    }*/
+
+        Bundle b = new Bundle();
+        b.putString("PRECIO BUS", String.valueOf(PRECIO_BUS));
+        b.putString("PRECIO METRO", String.valueOf(PRECIO_METRO));
+        b.putString("SALDO", String.valueOf(saldoDouble));
+
+        i.putExtras(b);
+        startActivityForResult(i, 1234);
+    }
+
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true; /** true -> el menú ya está visible */
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_preferencias) {
+            lanzarPreferencias(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override protected void onActivityResult (int requestCode,
+                                               int resultCode, Intent data){
+        if (requestCode==1234 && resultCode==RESULT_OK) {
+            saldoDouble = Double.parseDouble(data.getExtras().getString("SALDO"));
+            PRECIO_BUS = Double.parseDouble(data.getExtras().getString("PRECIO BUS"));
+            PRECIO_METRO = Double.parseDouble(data.getExtras().getString("PRECIO METRO"));
+            updateSaldo(saldoDouble);
+        }
+    }
 }
