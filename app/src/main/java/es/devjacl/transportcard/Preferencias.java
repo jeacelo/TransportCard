@@ -60,9 +60,13 @@ public class Preferencias extends Activity {
     public void lanzarMain (View view)
     {
         Intent i = new Intent();
+
         i.putExtra("PRECIO BUS", BusText.getText().toString());
         i.putExtra("PRECIO METRO", MetroText.getText().toString());
         i.putExtra("SALDO", SaldoText.getText().toString());
+        i.putExtra("CHANGE BUS", BusBtn.isChecked());
+        i.putExtra("CHANGE METRO", MetroBtn.isChecked());
+        i.putExtra("CHANGE SALDO", SaldoBtn.isChecked());
 
         setResult(RESULT_OK, i);
         finish();

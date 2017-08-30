@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         recargarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                updateSaldo(saldoDouble+5);
             }
         });
 
@@ -108,9 +107,12 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onActivityResult (int requestCode,
                                                int resultCode, Intent data){
         if (requestCode==1234 && resultCode==RESULT_OK) {
-            saldoDouble = Double.parseDouble(data.getExtras().getString("SALDO"));
-            PRECIO_BUS = Double.parseDouble(data.getExtras().getString("PRECIO BUS"));
-            PRECIO_METRO = Double.parseDouble(data.getExtras().getString("PRECIO METRO"));
+            if (data.getExtras().getBoolean("CHANGE SALDO"))
+                saldoDouble = Double.parseDouble(data.getExtras().getString("SALDO"));
+            if (data.getExtras().getBoolean("CHANGE BUS"))
+                PRECIO_BUS = Double.parseDouble(data.getExtras().getString("PRECIO BUS"));
+            if (data.getExtras().getBoolean("CHANGE METRO"))
+                PRECIO_METRO = Double.parseDouble(data.getExtras().getString("PRECIO METRO"));
             updateSaldo(saldoDouble);
         }
     }
