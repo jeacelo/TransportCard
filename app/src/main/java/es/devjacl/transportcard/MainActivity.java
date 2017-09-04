@@ -1,7 +1,8 @@
 package es.devjacl.transportcard;
 
+import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,16 +19,26 @@ public class MainActivity extends AppCompatActivity implements Dialogo.ItemListe
     private TextView saldoTxt, viajesBusTxt, viajesMetroTxt;
     private Button recargarBtn;
     private ImageButton BusBtn, MetroBtn;
-    public double PRECIO_BUS = 0.93;
-    public double PRECIO_METRO = 0.82;
-    private double saldoDouble = 5.2;
+    public double PRECIO_BUS;
+    public double PRECIO_METRO;
+    private double saldoDouble;
     private int viajesBus, viajesMetro;
-    private String saldo;
+    SharedPreferences.Editor editor;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        prefs = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        saldoDouble = prefs.getFloat("SALDO", 0);
+        PRECIO_BUS = prefs.getFloat("PRECIO BUS", 0);
+        PRECIO_METRO = prefs.getFloat("PRECIO METRO", 0);
+
+        saldoDouble = Math.round(saldoDouble * Math.pow(10, 2)) / Math.pow(10, 2);
+        PRECIO_BUS = Math.round(PRECIO_BUS * Math.pow(10, 2)) / Math.pow(10, 2);
+        PRECIO_METRO = Math.round(PRECIO_METRO * Math.pow(10, 2)) / Math.pow(10, 2);
 
         saldoTxt = (TextView) findViewById(R.id.saldo);
         viajesBusTxt = (TextView) findViewById(R.id.textoBus);
@@ -65,12 +76,25 @@ public class MainActivity extends AppCompatActivity implements Dialogo.ItemListe
     }
 
     private void updateSaldo(double saldo) {
-        if (saldo > 0) {
+        if (saldo >= 0) {
             saldoDouble = saldo;
             saldoDouble = Math.round(saldoDouble * Math.pow(10, 2)) / Math.pow(10, 2);
 
-            viajesBus = (int) (saldoDouble / PRECIO_BUS);
-            viajesMetro = (int) (saldoDouble / PRECIO_METRO);
+            if (PRECIO_BUS > 0)
+                viajesBus = (int) (saldoDouble / PRECIO_BUS);
+            else
+                viajesBus = 0;
+
+            if (PRECIO_METRO > 0)
+                viajesMetro = (int) (saldoDouble / PRECIO_METRO);
+            else
+                viajesMetro = 0;
+
+            editor = prefs.edit();
+            editor.putFloat("SALDO", (float) saldoDouble);
+            editor.putFloat("PRECIO BUS", (float) PRECIO_BUS);
+            editor.putFloat("PRECIO METRO", (float) PRECIO_METRO);
+            editor.commit();
 
             updateTexts();
         }
@@ -113,10 +137,14 @@ public class MainActivity extends AppCompatActivity implements Dialogo.ItemListe
         if (requestCode==1234 && resultCode==RESULT_OK) {
             if (data.getExtras().getBoolean("CHANGE SALDO"))
                 saldoDouble = Double.parseDouble(data.getExtras().getString("SALDO"));
-            if (data.getExtras().getBoolean("CHANGE BUS"))
+            if (data.getExtras().getBoolean("CHANGE BUS")) {
                 PRECIO_BUS = Double.parseDouble(data.getExtras().getString("PRECIO BUS"));
-            if (data.getExtras().getBoolean("CHANGE METRO"))
+                PRECIO_BUS = Math.round(PRECIO_BUS * Math.pow(10, 2)) / Math.pow(10, 2);
+            }
+            if (data.getExtras().getBoolean("CHANGE METRO")) {
                 PRECIO_METRO = Double.parseDouble(data.getExtras().getString("PRECIO METRO"));
+                PRECIO_METRO = Math.round(PRECIO_METRO * Math.pow(10, 2)) / Math.pow(10, 2);
+            }
             updateSaldo(saldoDouble);
         }
     }
