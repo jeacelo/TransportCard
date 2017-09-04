@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textoBus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio del viaje en Bus:" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/precioBus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="3"
+                android:enabled="false"
+                android:inputType="numberDecimal" />
+
+            <ToggleButton
+                android:id="@+id/BusActivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textoMetro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio del viaje en Metro:" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/precioMetro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:enabled="false"
+                android:ems="3"
+                android:inputType="numberDecimal" />
+
+            <ToggleButton
+                android:id="@+id/MetroActivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textoSaldo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saldo de la tarjeta:" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/saldoManual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:ems="4"
+                android:inputType="numberDecimal" />
+
+            <ToggleButton
+                android:id="@+id/SaldoActivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="60dp"
+        android:layout_gravity="center"
+        android:onClick="lanzarMain"
+        android:text="Guardar cambios"/>
+
+</LinearLayout>
