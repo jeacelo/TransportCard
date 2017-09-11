@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements Dialogo.ItemListe
         BusBtn = (ImageButton) findViewById(R.id.bus);
         MetroBtn = (ImageButton) findViewById(R.id.metro);
 
-        saldoTxt.setText(String.valueOf(saldoDouble));
+        saldoTxt.setText(String.valueOf(saldoDouble) + " €");
         viajesBus = (int) (saldoDouble / PRECIO_BUS);
         viajesMetro = (int) (saldoDouble / PRECIO_METRO);
 
