@@ -47,12 +47,10 @@ public class MainActivity extends AppCompatActivity implements Dialogo.ItemListe
         BusBtn = (ImageButton) findViewById(R.id.bus);
         MetroBtn = (ImageButton) findViewById(R.id.metro);
 
-        saldoTxt.setText(String.valueOf(saldoDouble));
         viajesBus = (int) (saldoDouble / PRECIO_BUS);
         viajesMetro = (int) (saldoDouble / PRECIO_METRO);
 
-        viajesBusTxt.setText((String.valueOf(viajesBus)) + " viajes");
-        viajesMetroTxt.setText((String.valueOf(viajesMetro)) + " viajes");
+        updateTexts();
 
         recargarBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
