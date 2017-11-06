@@ -25,11 +25,14 @@ public class MainActivity extends AppCompatActivity implements Dialogo.ItemListe
     private int viajesBus, viajesMetro;
     SharedPreferences.Editor editor;
     SharedPreferences prefs;
+    public static RecordDB record;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        record = new RecordDB(this);
 
         prefs = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         saldoDouble = prefs.getFloat("SALDO", 0);
